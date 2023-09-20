@@ -36,7 +36,7 @@ int main(){
 	int fact=1;
 	for(int i=2;i<=n;i++){
 		y+=(u1/fact)*a[(n-2)/i][i];
-		cout<<a[(n-1)/i][i];
+		cout<<a[(n-1)/i][i]<<endl;
 		fact=fact*i;
 		if(i==2){
 			u1*=(u-1);
