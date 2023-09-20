@@ -5,7 +5,7 @@ int main(){
 	float x;
 	cout<<"Enter the value of n:"<<endl;
 	cin>>n;
-	float a[n][n];
+	float a[10][10];
 	cout<<"Enter the value of x:"<<endl;
 	for(int i=0;i<n;i++){
 		cin>>a[i][0];
@@ -16,14 +16,14 @@ int main(){
 	}
 	cout<<"Enter the value to be predicted:"<<endl;
 	cin>>x;
-	for(int i=2;i<=n;i++){
-		for(int j=0;j<n-j+1;j++){
-			a[j][i]=a[j+1][i-1]-a[i][j-1];
+	for(int i=2;i<n+1;i++){
+		for(int j=0;j<n-i+1;j++){
+			a[j][i]=a[j+1][i-1]-a[j][i-1];
 		}
 	}
 	cout<<"The diiference table is:"<<endl;
 	for(int i=0;i<n;i++){
-		for(int j=0;j<=n;j++){
+		for(int j=0;j<=n-i;j++){
 			cout<<"\t"<<a[i][j];
 		}
 		cout<<endl;
@@ -31,13 +31,24 @@ int main(){
 	float y=a[n/2][1];
 	cout<<y<<endl;
 	float u=(x-a[n/2][0])/(a[1][0]-a[0][0]);
-	cout<<u<<endl;
 	float u1=u;
+	cout<<u1<<endl;
 	int fact=1;
 	for(int i=2;i<=n;i++){
-		y+=(((i/3)*(u+1))*u1*a[n/i][i])/fact;
+		y+=(u1/fact)*a[(n-1)/i][i];
+		cout<<a[(n-1)/i][i];
 		fact=fact*i;
-		u1*=(u-(i-1));
+		if(i==2){
+			u1*=(u-1);
+		}
+		else{
+			if(i==3){
+				u1*=(u+1);
+			}
+			else{
+				u1*=(u-(i-2));
+			}
+		}
 	}
 	cout<<"The desired value is:"<<y<<endl;
 	return 0;
